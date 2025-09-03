@@ -12,17 +12,15 @@ export function CustomButton(){
 
     return(
         <Box p={4}
-        bg="black"
-        borderRadius="lg"
-        textAlign={"center"}
+    
         >
             <VStack spacing={4}>
-                <ChakraButton textAlign={"center"} onClick= {(handleChangeName)=> alert ('Clicou')}>
+                <ChakraButton textAlign={"center"} onClick= {(handleChangeName)}>
                     Alterar nome
                 </ChakraButton>
                 
                 <Heading as= "h3" size="md">
-                    {nome}
+                    Nome: {nome}
 	            </Heading>
  
             </VStack>

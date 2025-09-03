@@ -1,8 +1,7 @@
 import { Box, Heading } from '@chakra-ui/react';
-import Head from 'next/head';
 
 
-export const revalidate = 60
+export const revalidate = 60;
 
 
 export default function Home(){
@@ -16,8 +15,6 @@ export default function Home(){
       <Heading>
         Numero gerado: {randomNumber}
       </Heading>
-    
-      
 
     </Box>
 

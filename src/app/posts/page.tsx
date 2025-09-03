@@ -1,6 +1,7 @@
 
 import { Box, Heading, Text, Flex, Button, VStack, Input, Center, Link  } from '@chakra-ui/react';
 
+
 export interface PostProps {
     id: number
     title: string
@@ -9,7 +10,7 @@ export interface PostProps {
 
 }
 
- export interface  ResponseProps{
+ interface  ResponseProps{
     posts: PostProps[]
 
 }
@@ -34,43 +35,47 @@ export default async function PostsPages() {
     }
 
 
-    async function handleSearcUsers(formData: FormData) {
+   async function handleSearcUsers(formData: FormData) {
       'use server'
 
       const userId = formData.get('userId')
+      
       const response = await fetch(`https://dummyjson.com/posts/user/${userId}`)
       const data:ResponseProps = await response.json()
 
 
       console.log(data)
-
-      
+    
     }
 
-
     return ( 
-        <Box as="form" onSubmit={handleFetchPosts} p={4}>
+        <Box p={4} >
 
             <Heading textAlign ={'center'} margin={5}>
                 Todos os Posts
             </Heading>
 
-            <VStack spacing= {2} >
-            <Input 
-              size="sm"
-              w={80}
-		          type= "text"
-		          placeholder="Id do usuario"
-		          borderColor="gray.300"
-              borderRadius={8}
-              name='userId'
+            <Button textAlign={'center'} onClick={(handleFetchPosts)}>
+              Buscar Posts
+            </Button>
             
-              />		
 
-              <Button colorScheme="blue" type="submit" margin={4}>
-              Buscar usuário
+            <VStack as="form" action={handleSearcUsers} spacing={2}>
+            <Input
+            size="sm"
+            w={80}
+            type="text"
+            placeholder="Id do usuário"
+            borderColor="gray.300"
+            borderRadius={8}
+            name="userId"
+      />		
+
+            <Button  textAlign={'center'} colorScheme="blue" type="submit" margin={4} onClick={(handleFetchPosts)}>
+              Buscar Usuario
             </Button>
             </VStack>
+
 
             <Flex direction="column" gap={3} mx={2}>
                 {data.posts.map(post => (
